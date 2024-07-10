@@ -1,17 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/orders', function () {
-    return 'liste des commandes';
-});
+Route::get('/order/{id}', [OrderController::class, 'displaySingleOrder']);
+Route::get('/order', [OrderController::class, 'displayOrderList']);
 
-Route::get('/orders/{id}', function ($id) {
-    return 'commande numéro' . $id;
-});
 
 
