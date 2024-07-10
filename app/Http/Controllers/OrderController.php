@@ -6,13 +6,24 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function displaySingleOrder(string $id): string
-    {
-        return 'commande numéro ' . $id;
+    public function displaySingleOrder(string $id): object {
+        return response()->json([
+            'id' => $id,
+            'name' => 'Abigail',
+            'state' => 'CA',
+        ]);
     }
 
-    public function displayOrderList()
-    {
-        return 'Liste de commandes';
+    public function displayOrderList() {
+        return response()->json([[
+            'id' => '1',
+            'name' => 'Abigail',
+            'state' => 'CA',
+
+        ],[
+            'id' => '2',
+            'name' => 'Abigail',
+            'state' => 'CA',
+        ]]);
     }
 }
