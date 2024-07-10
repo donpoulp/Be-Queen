@@ -6,12 +6,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/category', function () {
-    return 'liste des categories';
+Route::get('/orders', function () {
+    return 'liste des commandes';
 });
 
-Route::get('/category/{id}', function ($id) {
-    return 'category' . $id;
+Route::get('/orders/{id}', function ($id) {
+    return 'commande numéro' . $id;
 });
 
 
