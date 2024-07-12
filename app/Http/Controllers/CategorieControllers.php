@@ -3,24 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Categorie;
 
 class CategorieControllers extends Controller
 {
     public function ShowCategories(){
-            return
-                [['id'=>1,'nom_categorie'=>'super velo'],
-                ['id'=>2,'nom_categorie'=>'ville'],
-                ['id'=>3,'nom_categorie'=>'cross']]
-;
+        return response()->json(Categorie::all());
     }
 
     public function ShowCategorie(int $id){
-        $categorie = $this->ShowCategories();
-
-        foreach($categorie as $ca){
-            if ($ca['id'] == $id){
-                return ['categorie'=>$ca];
-            }
-        }
+        return response()->json(Categorie::where('id',$id)->get());
     }
+
+
+    // public function RecupAllCategorie(){ 
+    //     foreach (Categorie::all() as $ca) {
+    //             echo $ca;
+    //         }
+    // }
+
+    // public function Recup1Categorie(){ 
+    //     foreach (Categorie::all() as $ca) {
+    //             echo $ca;
+    //         }
+    // }
 }
