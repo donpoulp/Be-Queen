@@ -7,9 +7,20 @@ use Illuminate\Http\Request;
 class CategorieControllers extends Controller
 {
     public function ShowCategories(){
-        return 'liste de categorie';
+            return
+                [['id'=>1,'nom_categorie'=>'super velo'],
+                ['id'=>2,'nom_categorie'=>'ville'],
+                ['id'=>3,'nom_categorie'=>'cross']]
+;
     }
+
     public function ShowCategorie(int $id){
-        return 'categorie n°'.$id;
+        $categorie = $this->ShowCategories();
+
+        foreach($categorie as $ca){
+            if ($ca['id'] == $id){
+                return ['categorie'=>$ca];
+            }
+        }
     }
 }
