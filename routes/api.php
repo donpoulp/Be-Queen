@@ -8,4 +8,8 @@ Route::get('/user', function (Request $request) {
    return $request->user();
 })->middleware('auth:sanctum');
 
-Route::patch('/updatecustomer/{id}', [CustomerController::class, 'updateCustomer']);
+Route::put('/updatecustomer/{id}', [CustomerController::class, 'updateCustomer']);
+
+Route::post('/getcustomer', [CustomerController::class, 'postCustomer']);
+
+Route::delete('deletecustomer/{id}', [CustomerController::class, 'deleteCustomer']);
