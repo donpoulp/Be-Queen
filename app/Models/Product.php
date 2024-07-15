@@ -15,5 +15,5 @@ class Product extends Model
      */
     protected $table = 'product';
 
-    protected $fillable = ["name","description", "price", "image"];
+    protected $fillable = ["name", "description", "price", "image"];
 }

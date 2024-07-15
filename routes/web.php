@@ -11,6 +11,3 @@ Route::get('/product', [ProductController::class, 'product']);
 
 // un produit par son id
 Route::get('/product/{id}',  [ProductController::class, 'productShow']);
-
-
-

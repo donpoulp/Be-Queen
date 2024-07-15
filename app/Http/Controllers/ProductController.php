@@ -16,10 +16,9 @@ class ProductController extends Controller
         // $product = DB::table('product')->get();
         //return  $product; // data en json
         return response()->json(Product::all());
-        
     }
 
-//  un product par son id
+    //  un product par son id
     public function productShow(string $id)
     {
         $productId = Product::findOrfail($id);
@@ -31,14 +30,14 @@ class ProductController extends Controller
     // new product
     public function newProduct(Request $request)
     {
-       $newProduct = new Product();
+        $newProduct = new Product();
 
-       $newProduct->name =$request->input('name');  
-       $newProduct->description =$request->input('description');        
-       $newProduct->price =$request->input('price');        
-       $newProduct->image =$request->input('image');  
+        $newProduct->name = $request->input('name');
+        $newProduct->description = $request->input('description');
+        $newProduct->price = $request->input('price');
+        $newProduct->image = $request->input('image');
 
-       $newProduct->save();      
+        $newProduct->save();
 
 
         return response()->json($newProduct);
@@ -68,9 +67,5 @@ class ProductController extends Controller
         $deleteProduct->delete();
 
         return response()->json($deleteProduct);
-
     }
-
-
-   
 }
