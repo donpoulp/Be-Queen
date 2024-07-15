@@ -7,23 +7,19 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
     public function displaySingleOrder(string $id): object {
+
+        $order = DB::table('orders')->where('id_order', $id)->get();
+
         return response()->json([
-            'id' => $id,
-            'name' => 'Abigail',
-            'state' => 'CA',
+            'order'=>$order,
         ]);
     }
 
     public function displayOrderList() {
-        return response()->json([[
-            'id' => '1',
-            'name' => 'Abigail',
-            'state' => 'CA',
+        $orders = DB::table('orders')->get();
 
-        ],[
-            'id' => '2',
-            'name' => 'Abigail',
-            'state' => 'CA',
-        ]]);
+        return response()->json([
+            'orders' => $orders,
+        ]);
     }
 }
