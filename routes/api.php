@@ -1,17 +1,24 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 // orderController
 use App\Http\Controllers\OrderController;
 //cotegorie
 use App\Http\Controllers\CategorieControllers;
 //Jocelyn
 use App\Http\Controllers\ProductController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
-    return $request->user();
+   return $request->user();
 })->middleware('auth:sanctum');
+
+Route::put('/updatecustomer/{id}', [CustomerController::class, 'updateCustomer']);
+
+Route::post('/getcustomer', [CustomerController::class, 'postCustomer']);
+
+Route::delete('deletecustomer/{id}', [CustomerController::class, 'deleteCustomer']);
 
 // categorie
 Route::post('/categorie',[CategorieControllers::class, 'InsertCategorie']);
