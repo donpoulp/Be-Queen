@@ -11,8 +11,6 @@ class CustomerController extends Controller
     {
         return response()->json([
             'id'=>$id,
-            'name'=>'Don diego',
-
             ]
 
         );
@@ -21,7 +19,13 @@ class CustomerController extends Controller
     public function customershow():object
     {
         return response()->json([
-            'client'=>'Don diego',
+            'First Name'=>'Don',
+            'Last Name'=>'Diego',
+            'email'=>'don@diego.com',
+            'password'=>'password',
+            'civility'=>'mr',
+            'adress'=>'rue blabla',
+            'phone'=>'0123456789',
         ]);
     }
 }
