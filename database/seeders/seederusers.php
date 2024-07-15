@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 
 
-class DatabaseSeeder extends Seeder
+class seederusers extends Seeder
 {
     /**
      * Seed the application's database.
