@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+use Illuminate\Support\Facades\DB;
 
 class CategorieControllers extends Controller
 {
@@ -15,16 +16,29 @@ class CategorieControllers extends Controller
         return response()->json(Categorie::where('id',$id)->get());
     }
 
+    public function InsertCategorie(Request $request){
+        $cat = new Categorie();
+        $cat->name = $request->input('name');
+        $cat->description = $request->input('description');
+        $cat->save();
+        return response()->json($cat);
+    }
 
-    // public function RecupAllCategorie(){ 
-    //     foreach (Categorie::all() as $ca) {
-    //             echo $ca;
-    //         }
-    // }
+    public function ModifCategorie(Request $request){
+        $categorie = Categorie::find($request->id);
+        if($categorie){
+            $categorie->name=$request->name;
+            $categorie->description=$request->description;
+            $categorie->save();
+            return response()->json($categorie);
+        }
+    }
 
-    // public function Recup1Categorie(){ 
-    //     foreach (Categorie::all() as $ca) {
-    //             echo $ca;
-    //         }
-    // }
+    public function DeleteCategorie(Request $request){
+        $categorie = Categorie::find($request->id);
+        if($categorie){
+            $categorie->delete();
+            return response()->json("la categorie est bien supprimer");
+        }
+    }
 }

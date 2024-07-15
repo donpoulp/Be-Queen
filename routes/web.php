@@ -29,3 +29,5 @@ Route::get('/customer/{id}', function (int $id) {
 Route::get('/categorie',[CategorieControllers::class, 'ShowCategories']);
 
 Route::get('/categorie/{id}',[CategorieControllers::class, 'ShowCategorie']);
+
+
