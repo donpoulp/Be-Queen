@@ -33,6 +33,14 @@ class CategorieControllers extends Controller
             return response()->json($categorie);
         }
     }
+    public function Modif1RowCategorie(Request $request){
+        $categorie = Categorie::find($request->id);
+        if($categorie){
+            $categorie->name=$request->name;
+            $categorie->save();
+            return response()->json($categorie);
+        }
+    }
 
     public function DeleteCategorie(Request $request){
         $categorie = Categorie::find($request->id);

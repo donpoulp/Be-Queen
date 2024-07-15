@@ -11,4 +11,5 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/categorie',[CategorieControllers::class, 'InsertCategorie']);
 Route::put('/categorie/{id}',[CategorieControllers::class, 'ModifCategorie']);
+Route::patch('/categorie/{id}',[CategorieControllers::class, 'Modif1RowCategorie']);
 Route::delete('/categorie/{id}',[CategorieControllers::class, 'DeleteCategorie']);

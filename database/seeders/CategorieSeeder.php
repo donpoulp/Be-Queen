@@ -13,16 +13,16 @@ class CategorieSeeder extends Seeder
     public function run(): void
     {
         DB::table('categorie')->insert([
-            'name' => 'categorie1',
-            'description' => 'blabfzefzefczergergzela',
+            'name' => 'categorie 1',
+            'description' => 'Vous retrouveré ici les velos déja construit par nos soins',
         ]);
         DB::table('categorie')->insert([
-            'name' => 'categorie2',
-            'description' => 'bezbebzbtzbbzbztbzbbztb',
+            'name' => 'categorie 2',
+            'description' => 'Vous retrouverer ici les velos personnalisables de A à Z',
         ]);
         DB::table('categorie')->insert([
-            'name' => 'categorie3',
-            'description' => 'zbtrbzbzhzrthzthzbtzbztbzbtzbt',
+            'name' => 'categorie 3',
+            'description' => 'Vous retrouverer ici la liste des element personnalisable disponnible pour nos velos',
         ]);
     }
 }
