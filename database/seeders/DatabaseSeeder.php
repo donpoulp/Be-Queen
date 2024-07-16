@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PoignierSeeder::class);
         $this->call(PorteBagageSeeder::class);
         $this->call(RoueSeeder::class);
+        $this->call(OrdersSeeder::class);
+        $this->call(Product::class);
+        $this->call(seederusers::class);
     }
 }
