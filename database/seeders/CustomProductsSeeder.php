@@ -13,23 +13,17 @@ class CustomProductsSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('custom_products')->insert([
-            'cadre_id' => rand(1,10),
-            'moyen_de_propulsion_id' => rand(1,10),
-            'roue_id' => rand(1,10),
-            'porte_bagage_id' => rand(1,10),
-            'guidon_id' => rand(1,10),
-            'poignier_id' => rand(1,10),
-            'pedale_id' => rand(1,10),
-        ]);
-        DB::table('custom_products')->insert([
-            'cadre_id' => rand(1,10),
-            'moyen_de_propulsion_id' => rand(1,10),
-            'roue_id' => rand(1,10),
-            'porte_bagage_id' => rand(1,10),
-            'guidon_id' => rand(1,10),
-            'poignier_id' => rand(1,10),
-            'pedale_id' => rand(1,10),
-        ]);
+        for ($i = 0; $i < 50; $i++) {
+            DB::table('custom_products')->insert([
+                'cadre_id' => rand(1,10),
+                'moyen_de_propulsion_id' => rand(1,10),
+                'roue_id' => rand(1,10),
+                'porte_bagage_id' => rand(1,10),
+                'guidon_id' => rand(1,10),
+                'poignier_id' => rand(1,10),
+                'pedale_id' => rand(1,10),
+                'order_id' => rand(1, 10),
+            ]);
+        }
     }
 }
