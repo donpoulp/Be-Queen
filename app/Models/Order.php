@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use App\Models\User;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
