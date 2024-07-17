@@ -27,13 +27,10 @@ class OrderController extends Controller
         $request->validate([
             'status' => 'required|string|max:30',
             'user_id' => 'required|int',
-            'bike_id' => 'required|int',
         ]);
-
         $order = new Order;
-        $order->fill($request->only(['status', 'user_id', 'bike_id']));
+        $order->fill($request->only(['status', 'user_id']));
         $order->save();
-
         return response()->json($order);
     }
 
@@ -42,11 +39,10 @@ class OrderController extends Controller
         $request->validate([
             'status' => 'required|string|max:30',
             'user_id' => 'required|int',
-            'bike_id' => 'required|int',
         ]);
 
         $order = Order::findOrFail($id);
-        $order->fill($request->only(['status', 'user_id', 'bike_id']));
+        $order->fill($request->only(['status', 'user_id']));
         $order->save();
 
         return response()->json($order);
