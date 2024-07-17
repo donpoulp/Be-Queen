@@ -41,5 +41,10 @@ class CustomProduct extends Model
         return $this->BelongsTo(PorteBagage::class);
     }
 
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(Order::class);
+    }
+
     use HasFactory;
 }

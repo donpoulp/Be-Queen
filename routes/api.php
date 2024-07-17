@@ -46,3 +46,4 @@ Route::put('/order/{id}', [OrderController::class, 'updateOrder']);
 Route::delete('/order/{id}', [OrderController::class, 'deleteOrder']);
 Route::get('/getOrders/{id}',[OrderController::class, 'getUser']);
 Route::get('/getProducts/{id}',[OrderController::class, 'getProducts']);
+Route::get('/getCustomProducts/{id}',[OrderController::class, 'getCustomProducts']);

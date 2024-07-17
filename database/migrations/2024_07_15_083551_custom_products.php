@@ -4,6 +4,7 @@ use App\Models\Cadre;
 use App\Models\Categorie;
 use App\Models\Guidon;
 use App\Models\MoyenDePropulsion;
+use App\Models\Order;
 use App\Models\Pedale;
 use App\Models\Poignier;
 use App\Models\PorteBagage;
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->foreignIdFor(Guidon::class);
             $table->foreignIdFor(Pedale::class);
             $table->foreignIdFor(Poignier::class);
+            $table->foreignIdFor(Order::class);
             $table->timestamps();
         });
     }

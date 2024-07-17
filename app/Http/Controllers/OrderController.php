@@ -60,15 +60,24 @@ class OrderController extends Controller
     }
 
 
+
+    public function getProducts($id) {
+
+        $order = Order::with('products')->findOrFail($id);
+
+        return response()->json($order);
+    }
+
     public function getUser($id) {
 
         $order = Order::with('user')->findOrFail($id);
 
         return response()->json($order);
     }
-    public function getProducts($id) {
 
-        $order = Order::with('products')->findOrFail($id);
+    public function getCustomProducts($id) {
+
+        $order = Order::with('customProducts')->findOrFail($id);
 
         return response()->json($order);
     }
