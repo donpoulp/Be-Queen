@@ -16,7 +16,14 @@ class CategorieControllers extends Controller
         return response()->json(Categorie::where('id',$id)->get());
     }
 
+    #POST
     public function InsertCategorie(Request $request){
+        
+        $cat = $request->validate([
+            'name' => ['required', 'max:50'],
+            'description' => ['required', 'max:255'],
+        ]);
+
         $cat = new Categorie();
         $cat->name = $request->input('name');
         $cat->description = $request->input('description');
@@ -24,6 +31,7 @@ class CategorieControllers extends Controller
         return response()->json($cat);
     }
 
+    #PUT
     public function ModifCategorie(Request $request){
         $categorie = Categorie::find($request->id);
         if($categorie){
@@ -33,6 +41,8 @@ class CategorieControllers extends Controller
             return response()->json($categorie);
         }
     }
+
+    #PATCH
     public function Modif1RowCategorie(Request $request){
         $categorie = Categorie::find($request->id);
         if($categorie){
@@ -42,6 +52,7 @@ class CategorieControllers extends Controller
         }
     }
 
+    #DELETE
     public function DeleteCategorie(Request $request){
         $categorie = Categorie::find($request->id);
         if($categorie){
