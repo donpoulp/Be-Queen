@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 // orderController
@@ -14,11 +14,11 @@ Route::get('/user', function (Request $request) {
    return $request->user();
 })->middleware('auth:sanctum');
 
-Route::put('/updatecustomer/{id}', [CustomerController::class, 'updateCustomer']);
+Route::put('/updatecustomer/{id}', [UserController::class, 'updateCustomer']);
 
-Route::post('/getcustomer', [CustomerController::class, 'postCustomer']);
+Route::post('/getcustomer', [UserController::class, 'postCustomer']);
 
-Route::delete('deletecustomer/{id}', [CustomerController::class, 'deleteCustomer']);
+Route::delete('deletecustomer/{id}', [UserController::class, 'deleteCustomer']);
 
 // categorie
 Route::post('/categorie',[CategorieControllers::class, 'InsertCategorie']);
