@@ -22,20 +22,31 @@ Route::get('/getUserOrders/{id}', [UserController::class, 'getOrders']);
 
 
 // categorie
-Route::post('/categorie',[CategorieControllers::class, 'InsertCategorie']);
-Route::put('/categorie/{id}',[CategorieControllers::class, 'ModifCategorie']);
-Route::patch('/categorie/{id}',[CategorieControllers::class, 'Modif1RowCategorie']);
-Route::delete('/categorie/{id}',[CategorieControllers::class, 'DeleteCategorie']);
+Route::post('/categorie', [CategorieControllers::class, 'InsertCategorie']);
+Route::put('/categorie/{id}', [CategorieControllers::class, 'ModifCategorie']);
+Route::patch('/categorie/{id}', [CategorieControllers::class, 'Modif1RowCategorie']);
+Route::delete('/categorie/{id}', [CategorieControllers::class, 'DeleteCategorie']);
 
+// produits
+Route::prefix('product')->controller(ProductController::class)->group(function () {
+   // Tous les produits avec leurs categories = /product
+   Route::get('/',  'product')->name('product.index');
 
-// crée un  product
-Route::post('/add-product',  [ProductController::class, 'newProduct']);
+   // Un produit par son id  avec sa categorie= /product/id
+   Route::get('/{id}', 'productShow')->name('product.show');
 
-// crée un  product
-Route::patch('/update-product/{id}',  [ProductController::class, 'updateProduct']);
+   // categorie avec ces produits = /product/categorie/id
+   Route::get('/categorie/{id}',  'productCategorie')->name('product.categorie');
 
-// suprimer un produit
-Route::delete(('/delete-product/{id}'), [ProductController::class, 'deleteProduct']);
+   // crée un  product
+   Route::post('/add',   'newProduct')->name('product.new');
+
+   // modifier un  product
+   Route::patch('/update/{id}',  'updateProduct')->name('product.update');
+
+   // suprimer un produit
+   Route::delete(('/delete/{id}'),  'deleteProduct')->name('product.delete');
+});
 
 
 // orders

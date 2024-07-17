@@ -11,20 +11,16 @@ Route::get('/', function () {
 });
 
 
-Route::get('/customer', [UserController::class, 'customershow'] );
+Route::get('/customer', [UserController::class, 'customershow']);
 
 
 Route::get('/customer/{id}', [UserController::class, 'customershowid']);
 
-// tous les produits
-Route::get('/product', [ProductController::class, 'product']);
 
 
-// un produit par son id
-Route::get('/product/{id}',  [ProductController::class, 'productShow']);
 
 #categorie
-Route::get('/categorie',[CategorieControllers::class, 'ShowCategories']);
+Route::get('/categorie', [CategorieControllers::class, 'ShowCategories']);
 
 Route::get('/categorie/{id}',[CategorieControllers::class, 'ShowCategorie']);
 
