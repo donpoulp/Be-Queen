@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -68,4 +69,12 @@ class ProductController extends Controller
 
         return response()->json($deleteProduct);
     }
+
+
+//    public function getOrders($id) {
+//
+//        $product = Order::with('Orders')->findOrFail($id);
+//
+//        return response()->json($product);
+//    }
 }

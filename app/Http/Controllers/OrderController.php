@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
@@ -57,5 +58,21 @@ class OrderController extends Controller
         $order->delete();
         return response()->json(['message' => 'The order with the id: ' . $id . ' was successfully deleted'], 200);
     }
+
+
+    public function getUser($id) {
+
+        $order = Order::with('user')->findOrFail($id);
+
+        return response()->json($order);
+    }
+    public function getProducts($id) {
+
+        $order = Order::with('products')->findOrFail($id);
+
+        return response()->json($order);
+    }
+
+
 
 }

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cadre;
-use App\Models\CustomProduct;
-use App\Models\modelusers;
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -13,14 +12,14 @@ class UserController extends Controller
 {
     public function customershowid(string $id): object
     {
-        $userId = modelusers::findOrFail($id);
+        $userId = User::findOrFail($id);
         return response()->json([$userId]);
     }
 
     public function customershow(): object
     {
 
-        return response()->json(modelusers::all());
+        return response()->json(User::all());
     }
 
     public function updateCustomer($id, Request $request)
@@ -36,7 +35,7 @@ class UserController extends Controller
             'phone_number' => 'nullable'
         ]);
 
-        $user = modelusers::findOrFail($id);
+        $user = User::findOrFail($id);
         $user->update($updatecustomer);
 
         return response()->json($updatecustomer);
@@ -55,8 +54,8 @@ class UserController extends Controller
 //            'city' => 'nullable',
 //            'phone_number' => 'nullable'
 //        ]);
-        $postcustomer = new modelusers();
-        $postcustomer = modelusers::create($request->all());
+        $postcustomer = new User();
+        $postcustomer = User::create($request->all());
         $postcustomer->save();
         return response()->json($postcustomer);
     }
@@ -65,17 +64,16 @@ class UserController extends Controller
 
 public function deletecustomer(Request $request, $id)
     {
-        $deletecustomer = modelusers::findOrFail($id);
+        $deletecustomer = User::findOrFail($id);
         $deletecustomer->delete();
-        return response()->json(modelusers::all());
-    }
-
-    public function test($id){
-        $custom = Cadre::with('customProducts')->findOrFail($id);
-
-        return response()->json($custom);
-
+        return response()->json(User::all());
     }
 
 
+    public function getOrders($id) {
+
+        $user = User::with('orders')->findOrFail($id);
+
+        return response()->json($user);
+    }
 }

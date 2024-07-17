@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -13,7 +14,15 @@ class Product extends Model
      *
      * @var string
      */
-    protected $table = 'product';
+    protected $table = 'products';
+
+    protected $primaryKey = 'id';
+
 
     protected $fillable = ["name", "description", "price", "image"];
+
+    public function orders(): BelongsToMany
+    {
+        return $this->belongsToMany(Order::class, 'order_products');
+    }
 }

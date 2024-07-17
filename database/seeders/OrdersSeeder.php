@@ -15,13 +15,10 @@ class OrdersSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             Order::create([
                 'status' => Str::random(10),
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'user_id' => rand(1, 100),
-                'bike_id' => rand(1, 100),
+                'user_id' => rand(1, 10),
             ]);
         }
     }
