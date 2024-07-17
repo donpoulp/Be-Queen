@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\CategorieControllers;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
 
 
 Route::get('/', function () {
@@ -12,10 +11,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/customer', [CustomerController::class, 'customershow'] );
+Route::get('/customer', [UserController::class, 'customershow'] );
 
 
-Route::get('/customer/{id}', [CustomerController::class, 'customershowid']);
+Route::get('/customer/{id}', [UserController::class, 'customershowid']);
 
 // tous les produits
 Route::get('/product', [ProductController::class, 'product']);
@@ -29,3 +28,4 @@ Route::get('/categorie',[CategorieControllers::class, 'ShowCategories']);
 
 Route::get('/categorie/{id}',[CategorieControllers::class, 'ShowCategorie']);
 
+Route::get('/test/{id}',  [UserController::class, 'test']);

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cadre;
+use App\Models\CustomProduct;
 use App\Models\modelusers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 
-class CustomerController extends Controller
+class UserController extends Controller
 {
     public function customershowid(string $id): object
     {
@@ -68,6 +70,12 @@ public function deletecustomer(Request $request, $id)
         return response()->json(modelusers::all());
     }
 
+    public function test($id){
+        $custom = Cadre::with('customProducts')->findOrFail($id);
+
+        return response()->json($custom);
+
+    }
 
 
 }

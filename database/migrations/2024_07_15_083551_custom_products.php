@@ -1,5 +1,13 @@
 <?php
 
+use App\Models\Cadre;
+use App\Models\Categorie;
+use App\Models\Guidon;
+use App\Models\MoyenDePropulsion;
+use App\Models\Pedale;
+use App\Models\Poignier;
+use App\Models\PorteBagage;
+use App\Models\Roue;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,15 +19,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('custome_product', function (Blueprint $table) {
+        Schema::create('custom_products', function (Blueprint $table) {
             $table->id()->primary();
-            $table->integer('cadre_id');
-            $table->integer('moyen_de_propulsion_id');
-            $table->integer('roue_id');
-            $table->integer('porte_bagage_id');
-            $table->integer('guidon_id');
-            $table->integer('poignier_id');
-            $table->integer('pedale_id');
+            $table->foreignIdFor(Cadre::class);
+            $table->foreignIdFor(MoyenDePropulsion::class);
+            $table->foreignIdFor(Roue::class);
+            $table->foreignIdFor(PorteBagage::class);
+            $table->foreignIdFor(Guidon::class);
+            $table->foreignIdFor(Pedale::class);
+            $table->foreignIdFor(Poignier::class);
             $table->timestamps();
         });
     }
@@ -29,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('custome_product');
+        Schema::dropIfExists('custom_products');
     }
 };
