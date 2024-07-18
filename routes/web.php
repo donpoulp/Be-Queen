@@ -13,10 +13,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/customer', [UserController::class, 'customershow']);
 
 
-Route::get('/customer/{id}', [UserController::class, 'customershowid']);
 
 
 
