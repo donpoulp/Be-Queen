@@ -24,6 +24,8 @@ class User extends Model
     protected $fillable = ["first_name","last_name", "email", "password","civility","adress","city","phone_number"];
 
 
+
+
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);

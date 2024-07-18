@@ -14,10 +14,7 @@ use App\Http\Controllers\ProductController;
 Route::get('/user', function (Request $request) {
    return $request->user();
 })->middleware('auth:sanctum');
-Route::put('/updatecustomer/{id}', [UserController::class, 'updateCustomer']);
-Route::post('/getcustomer', [UserController::class, 'postCustomer']);
-Route::delete('deletecustomer/{id}', [UserController::class, 'deleteCustomer']);
-Route::get('/getUserOrders/{id}', [UserController::class, 'getOrders']);
+
 
 
 
@@ -26,6 +23,21 @@ Route::post('/categorie', [CategorieControllers::class, 'InsertCategorie']);
 Route::put('/categorie/{id}', [CategorieControllers::class, 'ModifCategorie']);
 Route::patch('/categorie/{id}', [CategorieControllers::class, 'Modif1RowCategorie']);
 Route::delete('/categorie/{id}', [CategorieControllers::class, 'DeleteCategorie']);
+
+
+Route::prefix('User')->controller(UserController::class)->group(function () {
+    Route::get('/', 'usershow');
+    Route::get('/{id}',  'userShowid');
+    Route::put('/update/{id}', 'updateUser');
+    Route::post('/post',  'postUser');
+    Route::delete('delete/{id}', 'deleteUser');
+    Route::get('/Orders/{id}', 'getOrders');
+});
+
+
+
+
+
 
 // produits
 Route::prefix('product')->controller(ProductController::class)->group(function () {
