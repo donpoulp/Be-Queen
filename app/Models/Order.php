@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model {
 
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable;
 
 
 

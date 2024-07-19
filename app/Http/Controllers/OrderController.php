@@ -31,7 +31,7 @@ class OrderController extends Controller
         $order->save();
         return response()->json([
             'order' => $order,
-            ]);
+        ]);
     }
 
 
