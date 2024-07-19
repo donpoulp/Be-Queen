@@ -36,7 +36,7 @@ Route::prefix('product')->controller(ProductController::class)->group(function (
    Route::get('/{id}', 'productShow')->name('product.show');
 
    // categorie avec ces produits = /product/categorie/id
-   Route::get('/categorie/{id}',  'productCategorie')->name('product.categorie');
+   Route::get('/categorie/{id}',  'categorieProduct')->name('product.categorie');
 
    // crée un  product
    Route::post('/add',   'newProduct')->name('product.new');

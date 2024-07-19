@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Product;
 use App\Models\Categorie;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
+
 
 class ProductController extends Controller
 {
@@ -17,28 +16,28 @@ class ProductController extends Controller
     {
         try {
             $products = Product::with('categorie')->get();
-            return response()->json($products);
+            
+            return response()->json(['getProductWithCategory'=>$products]);
+
         } catch (Exception $e) {
             return response()->json($e);
         }
 
-        if (Auth::check()) {
-        } else {
-            return response()->json('la connexion est obligatoire pour cette page');
-        }
     }
 
     //  un product par son id
     public function productShow(string $id)
     {
+       
+       
         try {
             $productId = Product::with('categorie')->findOrfail($id);
             return response()->json([
-                $productId
+                'getProductById'=>$productId
             ]);
         } catch (Exception $e) {
             return response()->json($e);
-        }
+        } 
     }
 
     // new product
@@ -46,20 +45,20 @@ class ProductController extends Controller
     {
 
         try {
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:50',
-                'description' => 'required|string',
-                'price' => 'required|numeric|min:0',
-                'image' => 'required|string',
-                'categorie_id' => 'required|exists:categories,id',
+            $validateData = $request->validate([
+                'name' => 'bail|required|string|max:50',
+                'description' => 'bail|required|string',
+                'price' => 'bail|required|numeric|min:0',
+                'image' => 'bail|required|string',
+                'categorie_id' => 'bail|required|exists:categories,id',
             ]);
 
-            $newProduct = new Product($validatedData);
+            $newProduct = new Product($validateData);
 
             $newProduct->save();
 
 
-            return response()->json($newProduct);
+            return response()->json(['newProduct'=>$newProduct]);
         } catch (Exception $e) {
             return response()->json($e);
         }
@@ -70,17 +69,17 @@ class ProductController extends Controller
     {
         try {
             $updateProduct = $request->validate([
-                'name' => 'required|string|max:50',
-                'description' => 'required|string',
-                'price' => 'required|numeric|min:0',
-                'image' => 'required|string',
+                'name' => 'bail|required|string|max:50',
+                'description' => 'bail|required|string',
+                'price' => 'bail|required|numeric|min:0',
+                'image' => 'bail|required|string',
                 'categorie_id' => 'required|exists:categories,id',
             ]);
 
             $product = Product::findOrFail($id);
             $product->update($updateProduct);
 
-            return response()->json($updateProduct);
+            return response()->json(['updateProduct'=>$updateProduct]);
         } catch (Exception $e) {
             return response()->json($e);
         }
@@ -94,28 +93,22 @@ class ProductController extends Controller
             $deleteProduct = Product::findOrFail($id);
             $deleteProduct->delete();
 
-            return response()->json($deleteProduct);
+            return response()->json(['deletOneProduct'=>$deleteProduct]);
         } catch (Exception $e) {
             return response()->json($e);
         }
     }
 
-    public function productCategorie($id)
+    public function categorieProduct($id)
     {
 
         try {
             $categorie = Categorie::with('product')->findOrFail($id);
-            return response()->json($categorie);
+            return response()->json(['categoryIdWithProduct'=>$categorie]);
         } catch (Exception $e) {
             return response()->json($e);
         }
     }
 
 
-//    public function getOrders($id) {
-//
-//        $product = Order::with('Orders')->findOrFail($id);
-//
-//        return response()->json($product);
-//    }
 }
