@@ -10,14 +10,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+#customer
 Route::get('/customer', [UserController::class, 'customershow']);
 
-
 Route::get('/customer/{id}', [UserController::class, 'customershowid']);
-
-
-
 
 #categorie
 Route::get('/categorie', [CategorieControllers::class, 'ShowCategories']);
