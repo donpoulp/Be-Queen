@@ -3,11 +3,8 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-// orderController
 use App\Http\Controllers\OrderController;
-//cotegorie
 use App\Http\Controllers\CategorieControllers;
-//Jocelyn
 use App\Http\Controllers\ProductController;
 
 //users
