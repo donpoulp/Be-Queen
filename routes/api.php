@@ -5,14 +5,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategorieControllers;
+use App\Http\Controllers\CustomProductController;
+//Jocelyn
 use App\Http\Controllers\ProductController;
 
 //users
 Route::get('/user', function (Request $request) {
    return $request->user();
 })->middleware('auth:sanctum');
-
-
 
 
 // categorie
@@ -67,7 +67,6 @@ Route::prefix('product')->controller(ProductController::class)->group(function (
    Route::delete(('/delete/{id}'),  'deleteProduct')->name('product.delete');
 });
 
-
 // orders
 Route::get('/order', [OrderController::class, 'displayOrderList']);
 Route::get('/order/{id}', [OrderController::class, 'displaySingleOrder']);
@@ -78,3 +77,10 @@ Route::get('/getOrders/{id}',[OrderController::class, 'getUser']);
 Route::get('/getProducts/{id}',[OrderController::class, 'getProducts']);
 Route::get('/getCustomProducts/{id}',[OrderController::class, 'getCustomProducts']);
 
+// CUSTOME PRODUCT
+Route::get('customproducts', [CustomProductController::class, 'ShowCustomProducts']);
+Route::get('customproduct/{id}', [CustomProductController::class, 'ShowCustomProduct']);
+Route::post('customproduct', [CustomProductController::class, 'CreateCustomProducts']);
+Route::put('customproduct/{id}', [CustomProductController::class, 'ModifCustomProducts']);
+Route::patch('customproduct/{id}', [CustomProductController::class, 'ModifColumnCustomProduct']);
+Route::delete('customproduct/{id}', [CustomProductController::class, 'DeleteCustomProduct']);

@@ -20,8 +20,8 @@ class CategorieControllers extends Controller
     public function InsertCategorie(Request $request){
         
         $cat = $request->validate([
-            'name' => ['required', 'max:50'],
-            'description' => ['required', 'max:255'],
+            'name' => ['required', 'string', 'max:50'],
+            'description' => ['required', 'string', 'max:255'],
         ]);
 
         $cat = new Categorie();
@@ -33,6 +33,12 @@ class CategorieControllers extends Controller
 
     #PUT
     public function ModifCategorie(Request $request){
+
+        $categorie = $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+
         $categorie = Categorie::find($request->id);
         if($categorie){
             $categorie->name=$request->name;
@@ -44,6 +50,12 @@ class CategorieControllers extends Controller
 
     #PATCH
     public function Modif1RowCategorie(Request $request){
+
+        $categorie = $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+        
         $categorie = Categorie::find($request->id);
         if($categorie){
             $categorie->name=$request->name;
