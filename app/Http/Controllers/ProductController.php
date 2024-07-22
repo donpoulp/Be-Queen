@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function product()
     {
         try {
-            $products = Product::with('categorie')->get();
+            $products = Product::with('category')->get();
             
             return response()->json(['getProductWithCategory'=>$products]);
 
@@ -31,7 +31,7 @@ class ProductController extends Controller
        
        
         try {
-            $productId = Product::with('categorie')->findOrfail($id);
+            $productId = Product::with('category')->findOrfail($id);
             return response()->json([
                 'getProductById'=>$productId
             ]);
@@ -40,29 +40,7 @@ class ProductController extends Controller
         } 
     }
 
-    // new product
-    public function newProduct(Request $request)
-    {
-
-        try {
-            $validateData = $request->validate([
-                'name' => 'bail|required|string|max:50',
-                'description' => 'bail|required|string',
-                'price' => 'bail|required|numeric|min:0',
-                'image' => 'bail|required|string',
-                'categorie_id' => 'bail|required|exists:categories,id',
-            ]);
-
-            $newProduct = new Product($validateData);
-
-            $newProduct->save();
-
-
-            return response()->json(['newProduct'=>$newProduct]);
-        } catch (Exception $e) {
-            return response()->json($e);
-        }
-    }
+    
 
     // modifier un produit
     public function updateProduct($id, Request $request)
