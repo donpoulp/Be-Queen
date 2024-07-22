@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Categorie;
+use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -104,7 +104,7 @@ class ProductController extends Controller
     {
 
         try {
-            $categorie = Categorie::with('product')->findOrFail($id);
+            $categorie = Category::with('product')->findOrFail($id);
             return response()->json($categorie);
         } catch (Exception $e) {
             return response()->json($e);
