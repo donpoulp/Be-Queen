@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('adress');
             $table->string('city');
             $table->string('phone_number');
+            $table->boolean('is_admin')->default(0);
             $table->timestamps();
         });
     }

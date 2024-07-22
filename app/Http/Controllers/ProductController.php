@@ -81,7 +81,7 @@ class ProductController extends Controller
     {
 
         try {
-            $categorie = Categorie::with('product')->findOrFail($id);
+            $categorie = Category::with('product')->findOrFail($id);
             return response()->json(['categoryIdWithProduct'=>$categorie]);
         } catch (Exception $e) {
             return response()->json($e);

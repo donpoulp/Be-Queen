@@ -11,24 +11,26 @@ use App\Http\Controllers\CustomProductController;
 use App\Http\Controllers\ProductController;
 // auth
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\AdminUser;
 
-// AUTH
+// AUTH USER
+// crée un user puis generer un token
 Route::post('/register', [AuthController::class, 'register']);
+// veirfier que l'user exist et generer un token
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+// recuperer les infos de l'utilisateur actuellement connecter en verifiant sont token
 Route::get('/me', [AuthController::class, 'actualUser'])->middleware('auth:sanctum');
 
-//user
-Route::put('/updatecustomer/{id}', [UserController::class, 'updateCustomer']);
-Route::post('/getcustomer', [UserController::class, 'postCustomer']);
-Route::delete('deletecustomer/{id}', [UserController::class, 'deleteCustomer']);
-Route::get('/getUserOrders/{id}', [UserController::class, 'getOrders']);
+// AUTH ADMIN
+// crée un admin puis generer un token
+Route::post('/adminRegister', [AuthController::class, 'adminRegister'])->middleware('auth:sanctum', AdminUser::class);
 
 // category
-Route::post('/category', [CategoryController::class, 'insertCategory']);
-Route::put('/category/{id}', [CategoryController::class, 'modifCategory']);
-Route::patch('/category/{id}', [CategoryController::class, 'updateColumnCategory']);
-Route::delete('/category/{id}', [CategoryController::class, 'deleteCategory']);
+Route::post('/category', [CategoryController::class, 'insertCategory'])->middleware('auth:sanctum', AdminUser::class);
+Route::put('/category/{id}', [CategoryController::class, 'modifCategory'])->middleware('auth:sanctum', AdminUser::class);
+Route::patch('/category/{id}', [CategoryController::class, 'updateColumnCategory'])->middleware('auth:sanctum', AdminUser::class);
+Route::delete('/category/{id}', [CategoryController::class, 'deleteCategory'])->middleware('auth:sanctum', AdminUser::class);
 
 
 //Users***************************************************************************************************************
@@ -40,20 +42,16 @@ Route::prefix('User')->controller(UserController::class)->group(function () {
     Route::get('/{id}',  'userShowid');
 
     // Modifier un utilisateur par son id
-    Route::put('/update/{id}', 'updateUser');
+    Route::put('/update/{id}', 'updateUser')->middleware('auth:sanctum');
 
     // crée un users
     Route::post('/post',  'postUser');
 
     // supprimer un user
-    Route::delete('delete/{id}', 'deleteUser');
+    Route::delete('delete/{id}', 'deleteUser')->middleware('auth:sanctum', AdminUser::class);
 
-    // recupère un user avec ses toutes ces commandes
-    Route::get('/{id}/Orders/', 'getOrdersByUserId');
-});//*******************************************************************************************************************
-
-
-
+    Route::get('/{id}/Orders/', 'getOrdersByUserId')->middleware('auth:sanctum', AdminUser::class);
+});
 
 // produits
 Route::prefix('product')->controller(ProductController::class)->group(function () {
@@ -67,24 +65,24 @@ Route::prefix('product')->controller(ProductController::class)->group(function (
    Route::get('/categorie/{id}',  'categorieProduct')->name('product.categorie');
 
    // crée un  product
-   Route::post('/add',   'newProduct')->name('product.new');
+   Route::post('/add',   'newProduct')->name('product.new')->middleware('auth:sanctum', AdminUser::class);
 
    // modifier un  product
-   Route::patch('/update/{id}',  'updateProduct')->name('product.update');
+   Route::patch('/update/{id}',  'updateProduct')->name('product.update')->middleware('auth:sanctum', AdminUser::class);
 
    // suprimer un produit
-   Route::delete(('/delete/{id}'),  'deleteProduct')->name('product.delete');
+   Route::delete(('/delete/{id}'),  'deleteProduct')->name('product.delete')->middleware('auth:sanctum', AdminUser::class);
 });
 
 // orders
-Route::get('/order', [OrderController::class, 'displayOrderList']);
-Route::get('/order/{id}', [OrderController::class, 'displaySingleOrder']);
-Route::post('/order', [OrderController::class, 'addOrder']);
-Route::put('/order/{id}', [OrderController::class, 'updateOrder']);
-Route::delete('/order/{id}', [OrderController::class, 'deleteOrder']);
-Route::get('/getOrders/{id}',[OrderController::class, 'getUser']);
-Route::get('/getProducts/{id}',[OrderController::class, 'getProducts']);
-Route::get('/getCustomProducts/{id}',[OrderController::class, 'getCustomProducts']);
+Route::get('/order', [OrderController::class, 'displayOrderList'])->middleware('auth:sanctum', AdminUser::class);
+Route::get('/order/{id}', [OrderController::class, 'displaySingleOrder'])->middleware('auth:sanctum');
+Route::post('/order', [OrderController::class, 'addOrder'])->middleware('auth:sanctum');
+Route::put('/order/{id}', [OrderController::class, 'updateOrder'])->middleware('auth:sanctum');
+Route::delete('/order/{id}', [OrderController::class, 'deleteOrder'])->middleware('auth:sanctum');
+Route::get('/getOrders/{id}',[OrderController::class, 'getUser'])->middleware('auth:sanctum', AdminUser::class);
+Route::get('/getProducts/{id}',[OrderController::class, 'getProducts'])->middleware('auth:sanctum', AdminUser::class);
+Route::get('/getCustomProducts/{id}',[OrderController::class, 'getCustomProducts'])->middleware('auth:sanctum', AdminUser::class);
 
 // CUSTOME PRODUCT
 Route::get('customproducts', [CustomProductController::class, 'ShowCustomProducts']);
