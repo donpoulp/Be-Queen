@@ -24,7 +24,7 @@ class Product extends Model
 
     public function categorie(): BelongsTo
     {
-        return $this->BelongsTo(Categorie::class);
+        return $this->BelongsTo(Category::class);
     }
 
     public function orders(): BelongsToMany

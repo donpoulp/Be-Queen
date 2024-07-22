@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Frame;
-use App\Models\handlebars;
+use App\Models\Handlebars;
 use App\Models\LuggageRack;
 use App\Models\Order;
 use App\Models\Pedal;
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreignIdFor(PropulsionMethod::class);
             $table->foreignIdFor(Wheel::class);
             $table->foreignIdFor(LuggageRack::class);
-            $table->foreignIdFor(handlebars::class);
+            $table->foreignIdFor(Handlebars::class);
             $table->foreignIdFor(Pedal::class);
             $table->foreignIdFor(Handle::class);
             $table->foreignIdFor(Order::class);
