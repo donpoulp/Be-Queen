@@ -1,26 +1,34 @@
 <?php
-
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+// order
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\CategorieControllers;
+// categoriy
+use App\Http\Controllers\CategoryController;
+// custom
+use App\Http\Controllers\CustomProductController;
+//Jocelyn
 use App\Http\Controllers\ProductController;
+// auth
+use App\Http\Controllers\AuthController;
 
-//users
-Route::get('/user', function (Request $request) {
-   return $request->user();
-})->middleware('auth:sanctum');
+// AUTH
+Route::post('/register', [AuthController::class, 'register']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/me', [AuthController::class, 'actualUser'])->middleware('auth:sanctum');
 
+//user
+Route::put('/updatecustomer/{id}', [UserController::class, 'updateCustomer']);
+Route::post('/getcustomer', [UserController::class, 'postCustomer']);
+Route::delete('deletecustomer/{id}', [UserController::class, 'deleteCustomer']);
+Route::get('/getUserOrders/{id}', [UserController::class, 'getOrders']);
 
-
-
-// categorie
-Route::post('/categorie', [CategorieControllers::class, 'InsertCategorie']);
-Route::put('/categorie/{id}', [CategorieControllers::class, 'ModifCategorie']);
-Route::patch('/categorie/{id}', [CategorieControllers::class, 'Modif1RowCategorie']);
-Route::delete('/categorie/{id}', [CategorieControllers::class, 'DeleteCategorie']);
-
+// category
+Route::post('/category', [CategoryController::class, 'insertCategory']);
+Route::put('/category/{id}', [CategoryController::class, 'modifCategory']);
+Route::patch('/category/{id}', [CategoryController::class, 'updateColumnCategory']);
+Route::delete('/category/{id}', [CategoryController::class, 'deleteCategory']);
 
 //Users***************************************************************************************************************
 Route::prefix('User')->controller(UserController::class)->group(function () {
@@ -41,10 +49,7 @@ Route::prefix('User')->controller(UserController::class)->group(function () {
 
     // recupère un user avec ses toutes ces commandes
     Route::get('/{id}/Orders/', 'getOrdersByUserId');
-});//*******************************************************************************************************************
-
-
-
+});//***
 
 // produits
 Route::prefix('product')->controller(ProductController::class)->group(function () {
@@ -67,7 +72,6 @@ Route::prefix('product')->controller(ProductController::class)->group(function (
    Route::delete(('/delete/{id}'),  'deleteProduct')->name('product.delete');
 });
 
-
 // orders
 Route::get('/order', [OrderController::class, 'displayOrderList']);
 Route::get('/order/{id}', [OrderController::class, 'displaySingleOrder']);
@@ -78,3 +82,10 @@ Route::get('/getOrders/{id}',[OrderController::class, 'getUser']);
 Route::get('/getProducts/{id}',[OrderController::class, 'getProducts']);
 Route::get('/getCustomProducts/{id}',[OrderController::class, 'getCustomProducts']);
 
+// custom
+Route::get('customproducts', [CustomProductController::class, 'showCustomProducts']);
+Route::get('customproduct/{id}', [CustomProductController::class, 'showCustomProduct']);
+Route::post('customproduct', [CustomProductController::class, 'createCustomProduct']);
+Route::put('customproduct/{id}', [CustomProductController::class, 'updateCustomProduct']);
+Route::patch('customproduct/{id}', [CustomProductController::class, 'updateColumnCustomProduct']);
+Route::delete('customproduct/{id}', [CustomProductController::class, 'deleteCustomProduct']);
