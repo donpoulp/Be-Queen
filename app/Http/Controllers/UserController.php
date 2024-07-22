@@ -18,7 +18,7 @@ class UserController extends Controller
         return response()->json(User::all());
     }
 
-    public function usershowid(Request $request , string $id): object
+    public function UserShowid(Request $request , string $id): object
     {
         $validated = $request->validate([
 
@@ -28,7 +28,7 @@ class UserController extends Controller
 
     }
 
-    public function updateUser($id, Request $request)
+    public function UpdateUser($id, Request $request)
     {
         $updatecustomer = $request->validate([
             'first_name' => 'nullable',
@@ -48,20 +48,21 @@ class UserController extends Controller
 
     }
 
-    public function postUser(Request $request)
+    public function PostUser(Request $request)
     {
+        try {
             $validate = $request->validate([
                 'first_name' => 'required|string|max:20',
                 'last_name' => 'required|string|max:20',
                 'email' => 'required|string|email|max:70|unique:users',
-                'password' => ['required', 'confirmed', Password::min(6)->letters(1)->numbers(1)->symbols(1)],
+                'password' => 'required|string',
                 'civility' => 'required|string|max:20',
-                'address' => 'required|string|max:60',
+                'adress' => 'required|string|max:60',
                 'city' => 'required|string|max:30',
                 'phone_number' => 'required|string|max:15',
             ]);
-            $validate['password'] = Hash::make($validate['password']);
-        try {
+
+
             $postcustomer = new User($validate);
             $postcustomer->save();
             return response()->json($postcustomer);
@@ -72,7 +73,7 @@ class UserController extends Controller
 
 
 
-public function deleteUser(Request $request, $id)
+public function DeleteUser(Request $request, $id)
     {
         $deletecustomer = User::findOrFail($id);
         $deletecustomer->delete();
@@ -80,7 +81,7 @@ public function deleteUser(Request $request, $id)
     }
 
 
-    public function getOrders($id) {
+    public function getOrdersByUserId($id) {
 
         $user = User::with('orders')->findOrFail($id);
 

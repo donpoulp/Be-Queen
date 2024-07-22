@@ -22,16 +22,26 @@ Route::patch('/categorie/{id}', [CategorieControllers::class, 'Modif1RowCategori
 Route::delete('/categorie/{id}', [CategorieControllers::class, 'DeleteCategorie']);
 
 
+//Users***************************************************************************************************************
 Route::prefix('User')->controller(UserController::class)->group(function () {
+    // Tous les users avec leurs categories = /product
     Route::get('/', 'usershow');
+
+    // Recuperer un utilisateur par son id
     Route::get('/{id}',  'userShowid');
+
+    // Modifier un utilisateur par son id
     Route::put('/update/{id}', 'updateUser');
+
+    // crée un users
     Route::post('/post',  'postUser');
+
+    // supprimer un user
     Route::delete('delete/{id}', 'deleteUser');
-    Route::get('/Orders/{id}', 'getOrders');
-});
 
-
+    // recupère un user avec ses toutes ces commandes
+    Route::get('/{id}/Orders/', 'getOrdersByUserId');
+});//*******************************************************************************************************************
 
 
 
@@ -67,3 +77,4 @@ Route::delete('/order/{id}', [OrderController::class, 'deleteOrder']);
 Route::get('/getOrders/{id}',[OrderController::class, 'getUser']);
 Route::get('/getProducts/{id}',[OrderController::class, 'getProducts']);
 Route::get('/getCustomProducts/{id}',[OrderController::class, 'getCustomProducts']);
+
