@@ -11,10 +11,7 @@ use App\Http\Controllers\ProductController;
 Route::get('/user', function (Request $request) {
    return $request->user();
 })->middleware('auth:sanctum');
-Route::put('/updatecustomer/{id}', [UserController::class, 'updateCustomer']);
-Route::post('/getcustomer', [UserController::class, 'postCustomer']);
-Route::delete('deletecustomer/{id}', [UserController::class, 'deleteCustomer']);
-Route::get('/getUserOrders/{id}', [UserController::class, 'getOrders']);
+
 
 
 
@@ -23,6 +20,31 @@ Route::post('/categorie', [CategorieControllers::class, 'InsertCategorie']);
 Route::put('/categorie/{id}', [CategorieControllers::class, 'ModifCategorie']);
 Route::patch('/categorie/{id}', [CategorieControllers::class, 'Modif1RowCategorie']);
 Route::delete('/categorie/{id}', [CategorieControllers::class, 'DeleteCategorie']);
+
+
+//Users***************************************************************************************************************
+Route::prefix('User')->controller(UserController::class)->group(function () {
+    // Tous les users avec leurs categories = /product
+    Route::get('/', 'usershow');
+
+    // Recuperer un utilisateur par son id
+    Route::get('/{id}',  'userShowid');
+
+    // Modifier un utilisateur par son id
+    Route::put('/update/{id}', 'updateUser');
+
+    // crée un users
+    Route::post('/post',  'postUser');
+
+    // supprimer un user
+    Route::delete('delete/{id}', 'deleteUser');
+
+    // recupère un user avec ses toutes ces commandes
+    Route::get('/{id}/Orders/', 'getOrdersByUserId');
+});//*******************************************************************************************************************
+
+
+
 
 // produits
 Route::prefix('product')->controller(ProductController::class)->group(function () {
@@ -55,3 +77,4 @@ Route::delete('/order/{id}', [OrderController::class, 'deleteOrder']);
 Route::get('/getOrders/{id}',[OrderController::class, 'getUser']);
 Route::get('/getProducts/{id}',[OrderController::class, 'getProducts']);
 Route::get('/getCustomProducts/{id}',[OrderController::class, 'getCustomProducts']);
+
