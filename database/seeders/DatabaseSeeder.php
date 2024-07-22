@@ -13,19 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(CadreSeeder::class);
-        $this->call(CategorieSeeder::class);
-        $this->call(CustomProductsSeeder::class);
-        $this->call(GuidonSeeder::class);
-        $this->call(MoyenDePropulsionSeeder::class);
-        $this->call(PedaleSeeder::class);
-        $this->call(PoignierSeeder::class);
-        $this->call(PorteBagageSeeder::class);
-        $this->call(RoueSeeder::class);
+        $this->call(FrameSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(CustomProductSeeder::class);
+        $this->call(HandlebarsSeeder::class);
+        $this->call(PropulsionMethodSeeder::class);
+        $this->call(PedalSeeder::class);
+        $this->call(HandleSeeder::class);
+        $this->call(LuggageRackSeeder::class);
+        $this->call(WheelSeeder::class);
         $this->call(OrdersSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(OrderProductSeeder::class);
-        $this->call(CustomProductsSeeder::class);
     }
 }

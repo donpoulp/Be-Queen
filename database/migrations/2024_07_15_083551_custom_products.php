@@ -1,14 +1,13 @@
 <?php
 
-use App\Models\Cadre;
-use App\Models\Categorie;
-use App\Models\Guidon;
-use App\Models\MoyenDePropulsion;
+use App\Models\Frame;
+use App\Models\handlebars;
+use App\Models\LuggageRack;
 use App\Models\Order;
-use App\Models\Pedale;
-use App\Models\Poignier;
-use App\Models\PorteBagage;
-use App\Models\Roue;
+use App\Models\Pedal;
+use App\Models\Handle;
+use App\Models\PropulsionMethod;
+use App\Models\Wheel;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,13 +21,13 @@ return new class extends Migration
     {
         Schema::create('custom_products', function (Blueprint $table) {
             $table->id()->primary();
-            $table->foreignIdFor(Cadre::class);
-            $table->foreignIdFor(MoyenDePropulsion::class);
-            $table->foreignIdFor(Roue::class);
-            $table->foreignIdFor(PorteBagage::class);
-            $table->foreignIdFor(Guidon::class);
-            $table->foreignIdFor(Pedale::class);
-            $table->foreignIdFor(Poignier::class);
+            $table->foreignIdFor(Frame::class);
+            $table->foreignIdFor(PropulsionMethod::class);
+            $table->foreignIdFor(Wheel::class);
+            $table->foreignIdFor(LuggageRack::class);
+            $table->foreignIdFor(handlebars::class);
+            $table->foreignIdFor(Pedal::class);
+            $table->foreignIdFor(Handle::class);
             $table->foreignIdFor(Order::class);
             $table->timestamps();
         });

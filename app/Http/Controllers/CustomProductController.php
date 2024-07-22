@@ -8,15 +8,15 @@ use Illuminate\Http\Request;
 class CustomProductController extends Controller
 {
     # GET
-    public function ShowCustomProducts(){
-        return response()->json(CustomProduct::all());
+    public function showCustomProducts(){
+        return response()->json(["custom products"=>CustomProduct::all()]);
     }
-    public function ShowCustomProduct($id){
-        return response()->json(CustomProduct::find($id));
+    public function showCustomProduct($id){
+        return response()->json(["custom product"=>CustomProduct::find($id)]);
     }
 
     # POST
-    public function CreateCustomProducts(Request $request){
+    public function createCustomProduct(Request $request){
 
         $custom = $request->validate([
             'cadre_id' => ['required', 'integer'],
@@ -37,10 +37,10 @@ class CustomProductController extends Controller
         $custom->pedale_id = $request->input('pedale_id');
         $custom->poignier_id = $request->input('poignier_id');
         $custom->save();
-        return response()->json($custom);
+        return response()->json(["custom product"=>$custom]);
     }
     # PUT
-    public function ModifCustomProducts(Request $request){
+    public function updateCustomProduct(Request $request){
 
         $custom = $request->validate([
             'cadre_id' => ['required', 'integer'],
@@ -62,12 +62,12 @@ class CustomProductController extends Controller
             $custom->pedale_id = $request->input('pedale_id');
             $custom->poignier_id = $request->input('poignier_id');
             $custom->save();
-            return response()->json($custom);
+            return response()->json(["custom product"=>$custom]);
         }
     }
 
     # PATCH
-    public function ModifColumnCustomProduct(Request $request){
+    public function updateColumnCustomProduct(Request $request){
 
         $custom = $request->validate([
             'cadre_id' => ['required', 'integer'],
@@ -83,15 +83,15 @@ class CustomProductController extends Controller
         if($custom){
             $custom->cadre_id = $request->input('cadre_id');
             $custom->save();
-            return response()->json($custom);
+            return response()->json(["custom product"=>$custom]);
         }
     }
     # DELETE
-    public function DeleteCustomProduct(Request $request){
+    public function deleteCustomProduct(Request $request){
         $custom = CustomProduct::find($request->id);
         if($custom){
             $custom->delete();
-            return response()->json("la categorie est bien supprimer");
+            return response()->json("The custom product is delete");
         }
     }
 }

@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\Admin\DasboardController;
 use App\Http\Controllers\Admin\ProductAdminController;
-use App\Http\Controllers\CategorieControllers;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +17,9 @@ Route::get('/customer', [UserController::class, 'customershow']);
 Route::get('/customer/{id}', [UserController::class, 'customershowid']);
 
 #categorie
-Route::get('/categorie', [CategorieControllers::class, 'ShowCategories']);
+Route::get('/categories', [CategoryController::class, 'showCategories']);
 
-Route::get('/categorie/{id}',[CategorieControllers::class, 'ShowCategorie']);
+Route::get('/category/{id}',[CategoryController::class, 'showCategory']);
 
 Route::get('/test/{id}',  [UserController::class, 'test']);
 

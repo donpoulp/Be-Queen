@@ -5,40 +5,39 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class CustomProduct extends Model
 {
 
-    public function cadre(): BelongsTo
+    public function frame(): BelongsTo
     {
-        return $this->BelongTo(Cadre::class);
+        return $this->BelongTo(Frame::class);
     }
     public function roue(): BelongsTo
     {
-        return $this->BelongsTo(Roue::class);
+        return $this->BelongsTo(Wheel::class);
     }
 
-    public function guidon(): BelongsTo
+    public function handlebars(): BelongsTo
     {
-        return $this->BelongsTo(Guidon::class);
+        return $this->BelongsTo(Handlebars::class);
     }
 
     public function moyendepropulsion(): BelongsTo
     {
-        return $this->BelongsTo(MoyenDePropulsion::class);
+        return $this->BelongsTo(PropulsionMethod::class);
     }
     public function pedale(): BelongsTo
     {
-        return $this->BelongsTo(Pedale::class);
+        return $this->BelongsTo(Pedal::class);
     }
     public function poignier(): BelongsTo
     {
-        return $this->BelongsTo(Poignier::class);
+        return $this->BelongsTo(Handle::class);
     }
     public function portebagage(): BelongsTo
     {
-        return $this->BelongsTo(PorteBagage::class);
+        return $this->BelongsTo(LuggageRack::class);
     }
 
     public function order(): BelongsTo

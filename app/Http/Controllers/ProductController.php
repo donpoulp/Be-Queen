@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Categorie;
+use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
