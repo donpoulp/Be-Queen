@@ -51,7 +51,7 @@ Route::prefix('User')->controller(UserController::class)->group(function () {
 
     // recupère un user avec ses toutes ces commandes
     Route::get('/{id}/Orders/', 'getOrdersByUserId')->middleware('auth:sanctum', AdminUser::class);
-});//***
+});//*******************************************************************************************************************
 
 // produits
 Route::prefix('product')->controller(ProductController::class)->group(function () {
