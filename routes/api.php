@@ -51,7 +51,8 @@ Route::prefix('User')->controller(UserController::class)->group(function () {
     Route::delete('delete/{id}', 'deleteUser')->middleware('auth:sanctum', AdminUser::class);
 
     Route::get('/{id}/Orders/', 'getOrdersByUserId')->middleware('auth:sanctum', AdminUser::class);
-});
+
+});//*******************************************************************************************************************
 
 // produits
 Route::prefix('product')->controller(ProductController::class)->group(function () {
