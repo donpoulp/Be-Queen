@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryAdminController;
 use App\Http\Controllers\Admin\DasboardController;
+use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CategoryController;
@@ -28,11 +30,33 @@ Route::get('/test/{id}',  [UserController::class, 'test']);
 //  ----------------     Admin ---------------------------- //
 Route::prefix('Admin')->group(function () {
     Route::get('/' , [DasboardController::class, 'dashboard'])->name('dashboard');
-
-    // produits
+// Product //
     Route::get('/product' , [ProductAdminController::class, 'productAdmin'])->name('productAdmin');
     Route::get('/product/new' , [ProductAdminController::class, 'newProduct'])->name('newProductAdmin');
+// Categories //
+    Route::get('/categories', [CategoryAdminController::class, 'bladeCategories'])->name('bladeCategories');
 
+    Route::get('/category/{id}', [CategoryAdminController::class, 'bladeUpdateCategory'])->name('bladeUpdateCategory');
+    Route::post('/category/{id}', [CategoryAdminController::class, 'bladeUpdateCategory'])->name('bladeUpdateCategory');
+
+    Route::get('/category/{id}', [CategoryAdminController::class, 'bladeDeleteCategory'])->name('bladeDeleteCategory');
+
+    Route::post('/category', [CategoryAdminController::class, 'bladeCreateCategory'])->name('bladeCreateCategory');
+    
+    Route::get('/search', [CategoryAdminController::class, 'searchCategory'])->name('searchCategory');
+
+// Orders //
+    Route::get('/orders', [OrderAdminController::class, 'bladeOrders'])->name('bladeOrders');
+
+    Route::get('/orders/{id}', [OrderAdminController::class, 'bladeUpdateOrder'])->name('bladeUpdateOrder');
+    Route::post('/orders/{id}', [OrderAdminController::class, 'bladeUpdateOrder'])->name('bladeUpdateOrder');
+
+    Route::get('/orders/{id}', [OrderAdminController::class, 'bladeDeleteOrder'])->name('bladeDeleteOrder');
+
+    Route::post('/orders', [OrderAdminController::class, 'bladeCreateOrder'])->name('bladeCreateOrder');
+
+    Route::get('/searchOrder', [OrderAdminController::class, 'searchOrders'])->name('searchOrders');    
+    
     // User
     Route::prefix('user')->group(function () {
         Route::get('/', [UserAdminController::class, 'userShow'])->name('userShow');
