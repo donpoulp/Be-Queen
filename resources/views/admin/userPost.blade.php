@@ -58,9 +58,7 @@
 @endsection
 
 @section('body')
-    @csrf
-    <form method="post"  action="{{ route('userPost') }}">
-        @method('POST')
+    <form method="post"  action="{{ route('userCreate') }}">
         @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Prénom</label>

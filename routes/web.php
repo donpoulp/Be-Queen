@@ -41,7 +41,16 @@ Route::prefix('Admin')->group(function () {
     // User
     Route::prefix('user')->group(function () {
         Route::get('/', [UserAdminController::class, 'userShow'])->name('userShow');
+
         Route::get('/delete/{id}', [UserAdminController::class, 'userDelete'])->name('userDelete');
-        Route::post('/post', [UserAdminController::class, 'userPost'])->name('userPost');
+        //Route::post('/post', [UserAdminController::class, 'userPost'])->name('userPost');
+
+        Route::get('/post', [UserAdminController::class, 'userPost'])->name('userPost');
+        Route::post('/create', [UserAdminController::class, 'userCreate'])->name('userCreate');
+        Route::get('/create', [UserAdminController::class, 'userCreate']);
+
+        Route::get('/Edit/{id}', [UserAdminController::class, 'userEdit'])->name('userEdit');
+        Route::put('/put/{id}', [UserAdminController::class, 'userPut'])->name('userPut');
+        //Route::get('/patch/{id}', [UserAdminController::class, 'userPatch']);
     });
 });
