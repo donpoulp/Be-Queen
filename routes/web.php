@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\DasboardController;
+use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\CustomAdminController;
 use App\Http\Controllers\Admin\ProductAdminController;
+use App\Http\Controllers\Admin\CategoryAdminController;
+
 
 
 Route::get('/', function () {
@@ -132,4 +136,6 @@ Route::prefix('Admin')->group(function () {
         Route::delete('cadre/delete/{id}', [CustomAdminController::class, 'deleteCadre'])->name('deleteCadre');
 
     });
+});
+
 });
