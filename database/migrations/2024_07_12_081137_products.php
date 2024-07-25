@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Categorie;
+use App\Models\Category;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->longText('description');
             $table->bigInteger('price');
             $table->string('image');
-            $table->foreignIdFor(Categorie::class);
+            $table->foreignIdFor(Category::class);
             $table->timestamps();
 
         });

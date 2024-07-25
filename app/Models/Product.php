@@ -19,12 +19,12 @@ class Product extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
 
-    protected $fillable = ["name", "description", "price", "image", 'categorie_id'];
+    protected $fillable = ["name", "description", "price", "image", 'category_id'];
 
 
-    public function categorie(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->BelongsTo(Categorie::class);
+        return $this->BelongsTo(Category::class);
     }
 
     public function orders(): BelongsToMany

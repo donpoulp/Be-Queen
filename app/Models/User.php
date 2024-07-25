@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
     /**
      * Get the comments for the blog post.
      */
@@ -21,7 +23,13 @@ class User extends Model
 
     protected $table = 'users';
 
-    protected $fillable = ["first_name","last_name", "email", "password","civility","adress","city","phone_number"];
+    protected $fillable = ["first_name","last_name", "email", "password","civility","adress","city","phone_number","is_admin"];
+
+    protected $hidden = ['password', 'remember_token',];
+
+    public static function find(mixed $request)
+    {
+    }
 
 
     public function orders(): HasMany
