@@ -11,6 +11,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Wheel extends Model
 {
     use HasFactory;
+    protected $table = 'wheels';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
+
+    protected $fillable = ["name", "color", "price", "image", 'stock'];
 
     protected static function newFactory(): Factory
     {
