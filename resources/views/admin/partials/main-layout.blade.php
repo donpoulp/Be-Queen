@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Admin Panel  {{isset($title)?'| '.$title:''}}</title>
+    <title>Admin  {{isset($title)?'| '.$title:''}}</title>
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin_assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -29,7 +29,7 @@
             <!-- Main Content -->
             <div id="content">
  
-                @yield('content-header')
+                @include("admin.partials.content-header")
  
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -44,7 +44,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright © Your Website 2021</span>
+                        <span>Be Queen © 2024</span>
                     </div>
                 </div>
             </footer>

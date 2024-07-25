@@ -1,6 +1,3 @@
-@extends('admin.partials.main-layout')
- 
-@section('content-header')
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -55,15 +52,3 @@
                         </li>
     </ul>
 </nav>
-<!-- /.content-header -->
-@endsection
-@section('body')
-    <!-- Main row -->
-    <div class="row">
-        <div class="container-fluid">
-            Dashboard
-        </div>
-         
-    </div>
-    <!-- /.row (main row) -->
-@endsection
