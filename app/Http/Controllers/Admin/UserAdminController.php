@@ -19,11 +19,14 @@ class UserAdminController extends Controller
     public function userDelete(Request $request){
         $users = User::findOrFail($request->id);
         $users->delete();
-        //return response()->Json($users);
-        //return redirect()->route('admin.user')->with('status'.'Client bien supprimé');
         return $this->userShow()->with('message', 'User supprimé');
     }
     public function userPost(Request $request){
+//
+    return view ('admin.userPost');
+    }
+    public function userCreate(Request $request){
+
         $validate = $request->validate([
             'first_name' => 'required|string|max:20',
             'last_name' => 'required|string|max:20',
@@ -31,20 +34,37 @@ class UserAdminController extends Controller
             'password' => 'required|string',
             'civility' => 'required|string|max:20',
             'adress' => 'required|string|max:60',
-            'city' => 'required|string|max:30',
-            'phone_number' => 'required|string|max:15',
-        ]);
-       User::create([
-           'first_name' => $validate->first_name,
-           'last_name' => $validate->last_name,
-           'email' => $validate->email,
-           'password' => $validate->password,
-           'civility' => $validate->civility,
-           'adress' => $validate->adress,
-           'city' => $validate->city,
-           'phone_number' => $validate->phone_number,
+           'city' => 'required|string|max:30',
+           'phone_number' => 'required|string|max:15',
        ]);
-     return view ('admin.userPost');
 
+        $adminPost = new User($request->all());
+        $adminPost->save();
+
+       return $this->userShow()->with('message', 'User créer');
+    }
+
+    public function userEdit($id){
+        $user = User::findOrFail($id);
+        return view ('userPatch',compact('user'));
+    }
+
+
+    public function userPut(Request $request, $id){
+        $updatecustomer = $request->validate([
+            'first_name' => 'nullable',
+            'last_name' => 'nullable',
+            'email' => 'nullable',
+            'password' => 'nullable',
+            'civility' => 'nullable',
+            'address' => 'nullable',
+            'city' => 'nullable',
+            'phone_number' => 'nullable'
+        ]);
+
+       $users = User::findOrFail($id);
+        $users->update($updatecustomer);
+
+        return $this->userShow()->with('message', 'User modifié');
     }
 }
