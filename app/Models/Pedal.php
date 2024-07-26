@@ -12,6 +12,14 @@ class Pedal extends Model
 {
     use HasFactory;
 
+
+    protected $table = 'pedals';
+
+    protected $fillable = ["name","color","material","price","image","stock"];
+
+    protected $hidden = ['created_at','updated_at'];
+
+
     protected static function newFactory(): Factory
     {
         return PostPedalFactory::new();

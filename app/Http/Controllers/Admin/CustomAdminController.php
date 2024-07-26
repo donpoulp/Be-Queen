@@ -124,7 +124,7 @@ class CustomAdminController extends Controller
 
     // -----------------------------------------------------------------  //
 
-    // ---------------------  Pedal ----------------------------------- //
+    // ---------------------  Pedal ----------------------------------- **********************************************//
     public function pedalCustom()
     {
         $pedals = Pedal::all();
@@ -132,10 +132,10 @@ class CustomAdminController extends Controller
             'title' => 'Pedal'
         ];
 
-        return view('admin.custom.pedal', $data, compact('pedals'));
+        return view('admin.custom.pedal.pedal', $data, compact('pedals'));
     }
 
-    // delete
+    // delete*********************************************************************************************************
     public function deletePedal($id)
     {
         $pedal = Pedal::findOrFail($id);
@@ -143,6 +143,89 @@ class CustomAdminController extends Controller
 
         return  $this->pedalCustom()->with('message', 'Pedale suprimer');
     }
+
+    //create*******************************************************************************************************
+    public function pedalPost(Request $request){
+//
+        return view ('admin.custom.pedal.pedalPost');
+    }
+    public function newPedal(Request $request)
+    {
+        $request->validate([
+            'name' => 'bail|required|string|max:50',
+            'color' => 'bail|required|string',
+            'price' => 'bail|required|numeric|min:0',
+            'material' => 'bail|required|string',
+            'image' => 'required|mimes:png,jpeg,jpg|max:2048',
+            'stock' => 'bail|required|numeric|min:0',
+        ]);
+
+        $filePath = public_path('uploads/pedal');
+        $pedal = new Pedal();
+        $pedal->name = $request->name;
+        $pedal->color = $request->color;
+        $pedal->price = $request->price;
+        $pedal->material = $request->material;
+        $pedal->image = $request->image;
+        $pedal->stock = $request->stock;
+
+        if ($request->hasFile(('image'))) {
+            $file = $request->file('image');
+            $file_name = time() . $file->getClientOriginalName();
+
+            $file->move($filePath, $file_name);
+            $pedal->image = $file_name;
+        }
+        $result = $pedal->save();
+
+
+        return  $this->pedalCustom()->with('message', 'Nouvelle pedale crée');
+    }
+    //**********************************************Modifier*************************************************************
+
+    public function pedalPut($id){
+         $pedal = Pedal::findOrFail($id);
+        return view ('admin.custom.pedal.pedalPut',compact('pedal'));
+    }
+    public function updatePedal(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'bail|required|string|max:50',
+            'color' => 'bail|required|string',
+            'price' => 'bail|required|numeric|min:0',
+            'material' => 'bail|required|min:0',
+            'image' => 'required',
+            'stock' => 'bail|required|numeric|min:0',
+        ]);
+        $updatePedal= Pedal::findOrFail($id);
+
+
+        $updatePedal->name = $request->name;
+        $updatePedal->color = $request->color;
+        $updatePedal->price= $request->price;
+        $updatePedal->material= $request->material;
+        $updatePedal->image= $request->image;
+        $updatePedal->stock= $request->stock;
+
+
+        if ($request->hasFile('image')) {
+
+            if ($updatePedal->image && file_exists(public_path('uploads/pedal' . $updatePedal->image))) {
+                unlink(public_path('uploads/pedal/' . $updatePedal->image));
+            }
+            $file = $request->file('image');
+            $file_name = time() . '' . $file->getClientOriginalName();
+            $filePath = public_path('uploads/pedal/');
+            $file->move($filePath, $file_name);
+
+
+            $updatePedal->image = $file_name;
+        }
+        $updatePedal->save();
+
+        return $this->pedalCustom()->with('message','Produit modifier');
+    }
+
     // -----------------------------------------------------------------  //
 
 

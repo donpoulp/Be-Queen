@@ -8,7 +8,7 @@
 
     <div class="container-fluid mt-5">
         <div class="container-fluid mb-4">
-            <a href="{{-- {{ route('') }} --}}" class="btn btn-success">Nouvelle Pedale</a>
+            <a href="{{route('pedalPost')}}" class="btn btn-success">Nouvelle Pedale</a>
         </div>
         @if (isset($message))
             <div class="alert alert-success" role="alert">
@@ -38,15 +38,15 @@
                         <td>{{ $pedal->material }}</td>
                         <td>{{ $pedal->price }}€</td>
                         <td>
-                            <img src="{{ asset('storage/images/' . $pedal->image) }}" alt="{{ $pedal->name }}"
-                                class="img-fluid" width="100">
+                            <img src="{{ asset('uploads/pedal/' . $pedal->image) }}" alt="{{ $pedal->name }}"
+                                 class="img-fluid" width="100">
                         </td>
                         <td>{{ $pedal->stock }}</td>
 
                         <td>
                             <div class="p-2" role="group" aria-label="Actions">
-                                <a href="  {{-- {{ route('getOneProduct', $product->id) }} --}} " class="btn btn-warning ">Modifier</a>
-                                <form action=" {{ route('deletePedal', $pedal->id) }}" method="POST" style="display:inline;">
+                                <a href="{{route('pedalPut', $pedal->id)}} " class="btn btn-warning ">Modifier</a>
+                                <form action="{{ route('deletePedal', $pedal->id) }}" method="POST" style="display:inline;">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger ">Supprimer</button>
