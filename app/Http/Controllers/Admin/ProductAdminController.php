@@ -50,8 +50,6 @@ class ProductAdminController extends Controller
         $insert->price = $request->price;
         $insert->category_id = $request->category_id;
 
-
-
         if ($request->hasFile(('image'))) {
             $file = $request->file('image');
             $file_name = time() . $file->getClientOriginalName();

@@ -147,6 +147,7 @@ class CustomAdminController extends Controller
 
 
     // ----------------------  porte-bagages  ------------------------- //
+    //get
     public function porteBagages()
     {
         $portebagages = LuggageRack::all();
@@ -154,6 +155,35 @@ class CustomAdminController extends Controller
             'title' => 'Porte Bagages'
         ];
         return view('admin.custom.portebagage', $data, compact('portebagages'));
+    }
+
+    // update
+    public function porteBagagesUpdate(Request $request){
+
+        $portebagage = LuggageRack::find($request->id);
+        
+            $portebagage->name = $request->input('name');
+            $portebagage->volume = $request->input('volume');
+            $portebagage->price = $request->input('price');
+            $portebagage->image = $request->input('image');
+            $portebagage->stock = $request->input('stock');
+            $portebagage->save();
+       
+        return $this->porteBagages()->with('message', 'Porte Bagage Modifiée');
+    }
+
+    // post
+    public function porteBagagesCreate(Request $request){
+
+        $portebagages = new LuggageRack();
+        
+        $portebagages->name = $request->input('name');
+        $portebagages->volume = $request->input('volume');
+        $portebagages->price = $request->input('price');
+        $portebagages->image = $request->input('image');
+        $portebagages->stock = $request->input('stock');
+        $portebagages->save();
+        return $this->porteBagages()->with('message', 'Porte Bagage Crée');
     }
 
     //  delete 

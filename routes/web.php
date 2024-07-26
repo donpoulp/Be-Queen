@@ -9,9 +9,7 @@ use App\Http\Controllers\Admin\OrderAdminController;
 use App\Http\Controllers\Admin\CustomAdminController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\CategoryAdminController;
-
-
-
+use App\Http\Controllers\SwaggerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,10 +18,7 @@ Route::get('/', function () {
 #customer
 Route::get('/customer', [UserController::class, 'customershow']);
 
-
 Route::get('/customer/{id}', [UserController::class, 'customershowid']);
-
-
 
 
 #categorie
@@ -34,12 +29,9 @@ Route::get('/category/{id}', [CategoryController::class, 'showCategory']);
 Route::get('/test/{id}',  [UserController::class, 'test']);
 
 
-
 //  ----------------     Admin ---------------------------- //
 Route::prefix('Admin')->group(function () {
     Route::get('/', [DasboardController::class, 'dashboard'])->name('dashboard');
-
-
 
     Route::prefix('product')->group(function () {
         // Tous les Produit //
@@ -56,8 +48,7 @@ Route::prefix('Admin')->group(function () {
         Route::put('/update/{id}', [ProductAdminController::class, 'updateProduct'])->name('updateProduct');
      
         // suprimer un produit //
-        Route::delete('/delete/{id}', [ProductAdminController::class, 'deleteProduct'])->name('deleteProduct');
-        
+        Route::delete('/delete/{id}', [ProductAdminController::class, 'deleteProduct'])->name('deleteProduct');        
     });
 
     Route::prefix('custom')->group(function () {
@@ -78,9 +69,15 @@ Route::prefix('Admin')->group(function () {
 
         Route::get('/propulsion', [CustomAdminController::class, 'propulsion'])->name('propulsion');
         Route::delete('propulsion/delete/{id}', [CustomAdminController::class, 'deletePropulsion'])->name('deletePropulsion');
-//--------------------------------------------------------------------------------------------------------------------//
+//-------------------------------------------------Porte bagage------------------------------------------------------------//
 
         Route::get('/porteBagages', [CustomAdminController::class, 'porteBagages'])->name('porteBagages');
+
+        Route::post('/porteBagages/create', [CustomAdminController::class, 'porteBagagesCreate'])->name('porteBagagesCreate');
+        Route::get('/porteBagages/create', [CustomAdminController::class, 'porteBagagesCreate'])->name('porteBagagesCreate');
+
+        Route::post('/porteBagages/update/{id}', [CustomAdminController::class, 'porteBagagesUpdate'])->name('porteBagagesUpdate');
+
         Route::delete('porteBagages/delete/{id}', [CustomAdminController::class, 'deletePorteBagage'])->name('deletePorteBagage');
 //--------------------------------------------------------------------------------------------------------------------//
 
@@ -94,11 +91,7 @@ Route::prefix('Admin')->group(function () {
 
         Route::get('/cadre', [CustomAdminController::class, 'cadre'])->name('cadre');
         Route::delete('cadre/delete/{id}', [CustomAdminController::class, 'deleteCadre'])->name('deleteCadre');
-
-
     });
-
-
    
 // Categories //
     Route::get('/categories', [CategoryAdminController::class, 'bladeCategories'])->name('bladeCategories');
@@ -140,3 +133,6 @@ Route::prefix('Admin')->group(function () {
         //Route::get('/patch/{id}', [UserAdminController::class, 'userPatch']);
     });
 });
+//Swagger//
+Route::get('/api/doc', [SwaggerController::class, 'SwaggerShow']);
+//Route::post('/api/doc', [SwaggerController::class, 'SwaggerShow']);

@@ -12,6 +12,12 @@ class LuggageRack extends Model
 {
     use HasFactory;
 
+    protected $table = 'luggage_racks';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
+
+    protected $fillable = ["name", "volume", "price", "image", 'stock'];
+
     protected static function newFactory(): Factory
     {
         return PostLuggageRackFactory::new();
