@@ -12,6 +12,15 @@ class PropulsionMethod extends Model
 {
     use HasFactory;
 
+    protected $table = 'propulsion_methods';
+
+    protected $primaryKey = 'id';
+
+    public $timestamps = true;
+   
+
+    protected $fillable = ["name", "max_speed", "autonomie", "price", 'image', 'stock'];
+
     protected static function newFactory(): Factory
     {
         return PostPropulsionMethodFactory::new();

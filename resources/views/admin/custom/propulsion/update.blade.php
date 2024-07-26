@@ -8,31 +8,38 @@
     <div class="row">
         <div class="container-fluid">
             <div class="container-fluid">
-                <a href="{{ route('wheelCustom') }}" class="btn btn-primary">Retour</a>
+                <a href="{{ route('propulsion') }}" class="btn btn-primary">Retour</a>
              </div>
         </div>
         <div class="container mt-5">
-            <h2 class="mb-4">Ajouter une Roue</h2>
-            <form action="{{ route('newWheel') }}" method="POST" enctype="multipart/form-data" class="border p-4 rounded">
+            <h2 class="mb-4">Ajouter un moyen de propulsion</h2>
+            <form action="{{ route('newPropulsion') }}" method="POST" enctype="multipart/form-data" class="border p-4 rounded">
                 @csrf
                 <div class="form-group row">
-                    <label for="productName" class="col-sm-2 col-form-label">Nom de la Roue :</label>
+                    <label for="productName" class="col-sm-2 col-form-label">Nom  :</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control form-control-sm" id="productName" name="name" placeholder="Entrez le nom du produit">
+                        <input type="text" class="form-control form-control-sm" id="productName" name="name" value="{{$propulsion->name}}">
                         @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="productColor" class="col-sm-2 col-form-label">Couleur :</label>
-                    <div class="col-sm-4">
-                        <input type="color" class="form-control form-control-sm" id="productColor" name="color" placeholder="Entrez la couleur du produit" value="{{ old('color') }}">
-                        @error('color') <span class="text-danger">{{ $message }}</span> @enderror
+                    <label for="productName" class="col-sm-2 col-form-label">Vitess:</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="max_speed" name="max_speed" value="{{$propulsion->max_speed}}" >
+                        @error('max_speed') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="productColor" class="col-sm-2 col-form-label">Autonomie :</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="productColor" name="autonomie" value="{{$propulsion->autonomie}}"">
+                        @error('autonomie') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="productPrice" class="col-sm-2 col-form-label">Prix :</label>
                     <div class="col-sm-7">
-                        <input type="number" class="form-control form-control-sm" id="productPrice" name="price" placeholder="Entrez le prix du produit">
+                        <input type="number" class="form-control form-control-sm" id="productPrice" name="price" value="{{$propulsion->price}}">
                         @error('price') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -49,7 +56,7 @@
                 <div class="form-group row">
                     <label for="productStock" class="col-sm-2 col-form-label">Stock :</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control form-control-sm" id="stock" name="stock" placeholder="Entrez le stock du produit">
+                        <input type="text" class="form-control form-control-sm" id="stock" name="stock" value="{{$propulsion->price}}" >
                         @error('stock') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>

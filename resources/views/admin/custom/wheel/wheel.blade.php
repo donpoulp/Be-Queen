@@ -36,7 +36,7 @@
                         <td>{{ $wheel->color }}</td>
                         <td>{{ $wheel->price }}€</td>
                         <td>
-                            <img src="{{ asset('storage/images/' . $wheel->image) }}" alt="{{ $wheel->name }}"
+                            <img src="{{ asset('uploads/roue/' . $wheel->image) }}" alt="{{ $wheel->name }}"
                                 class="img-fluid" width="100">
                         </td>
                         <td>{{ $wheel->stock }}</td>

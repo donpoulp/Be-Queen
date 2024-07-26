@@ -8,7 +8,7 @@
 
     <div class="container-fluid mt-5">
         <div class="container-fluid mb-4">
-            <a href="{{-- {{ route('') }} --}}" class="btn btn-success">Nouveaux Guidon</a>
+            <a href=" {{ route('newHandleView') }}" class="btn btn-success">Nouveaux Guidon</a>
         </div>
         @if (isset($message))
             <div class="alert alert-success" role="alert">
@@ -38,14 +38,14 @@
                         <td>{{ $guidon->material }}</td>
                         <td>{{ $guidon->price }}€</td>
                         <td>
-                            <img src="{{ asset('storage/images/' . $guidon->image) }}" alt="{{ $guidon->name }}"
+                            <img src="{{ asset('uploads/guidon/' . $guidon->image) }}" alt="{{ $guidon->name }}"
                                 class="img-fluid" width="100">
                         </td>
                         <td>{{ $guidon->stock }}</td>
 
                         <td>
                             <div class="p-2" role="group" aria-label="Actions">
-                                <a href="  {{-- {{ route('getOneProduct', $product->id) }} --}} " class="btn btn-warning ">Modifier</a>
+                                <a href="  {{ route('getGuidon', $guidon->id) }} " class="btn btn-warning ">Modifier</a>
                                 <form action="{{ route('deleteguidon', $guidon->id) }} " method="POST" style="display:inline;">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}

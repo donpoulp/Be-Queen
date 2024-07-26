@@ -106,7 +106,7 @@ Route::prefix('Admin')->group(function () {
         Route::get('/whell/new', [CustomAdminController::class, 'newWheelView'])->name('newWheelView');
         Route::post('/', [CustomAdminController::class, 'newWheel'])->name('newWheel');
         
-        Route::get('/whell/{id}', [CustomAdminController::class, 'getProductWheel'])->name('getProductWheel');;
+        Route::get('/whell/{id}', [CustomAdminController::class, 'getProductWheel'])->name('getProductWheel');
         Route::put('/whell/update/{id}', [CustomAdminController::class, 'updateWheel'])->name('updateWheel');
 
         Route::delete('/whell/delete/{id}', [CustomAdminController::class, 'deleteWheel'])->name('deleteWheel');
@@ -117,6 +117,14 @@ Route::prefix('Admin')->group(function () {
 //--------------------------------------------------------------------------------------------------------------------//
 
         Route::get('/propulsion', [CustomAdminController::class, 'propulsion'])->name('propulsion');
+
+        Route::get('/propulsion/new', [CustomAdminController::class, 'newPropulsionView'])->name('newPropulsionView');
+        Route::post('/newPropulsion', [CustomAdminController::class, 'newPropulsion'])->name('newPropulsion');
+
+        Route::get('/propulsion/{id}', [CustomAdminController::class, 'getPropulsion'])->name('getPropulsion');
+        Route::put('/propulsion/update/{id}', [CustomAdminController::class, 'updateWheel'])->name('updateWheel');
+
+
         Route::delete('propulsion/delete/{id}', [CustomAdminController::class, 'deletePropulsion'])->name('deletePropulsion');
 //--------------------------------------------------------------------------------------------------------------------//
 
@@ -125,10 +133,24 @@ Route::prefix('Admin')->group(function () {
 //--------------------------------------------------------------------------------------------------------------------//
 
         Route::get('/guidon', [CustomAdminController::class, 'guidon'])->name('guidon');
+
+        Route::get('/guidon/new', [CustomAdminController::class, 'newHandleView'])->name('newHandleView');
+        Route::post('/', [CustomAdminController::class, 'newHandle'])->name('newHandle');
+
+        Route::get('/guidon/{id}', [CustomAdminController::class, 'getGuidon'])->name('getGuidon');
+        Route::put('/guidon/update/{id}', [CustomAdminController::class, 'updateGuiudon'])->name('updateGuiudon');
+
+
         Route::delete('guidon/delete/{id}', [CustomAdminController::class, 'deleteguidon'])->name('deleteguidon');
 //--------------------------------------------------------------------------------------------------------------------//
 
         Route::get('/poignee', [CustomAdminController::class, 'poignee'])->name('poignee');
+
+        Route::get('/poigne/new', [CustomAdminController::class, 'newPoigneView'])->name('newPoigneView');
+        Route::post('/', [CustomAdminController::class, 'newPoigne'])->name('newPoigne');
+
+        Route::get('/poigne/{id}', [CustomAdminController::class, 'getPoigne'])->name('getPoigne');
+        Route::put('/poigne/update/{id}', [CustomAdminController::class, 'updatepoigne'])->name('updatepoigne');
         Route::delete('poignee/delete/{id}', [CustomAdminController::class, 'deletepoignee'])->name('deletepoignee');
 //--------------------------------------------------------------------------------------------------------------------//
 

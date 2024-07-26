@@ -43,7 +43,7 @@ class ProductAdminController extends Controller
             'category_id' => 'bail|required|exists:categories,id',
         ]);
 
-        $filePath = public_path('uploads');
+        $filePath = public_path('uploads/product');
         $insert = new Product();
         $insert->name = $request->name;
         $insert->description = $request->description;
@@ -83,7 +83,7 @@ class ProductAdminController extends Controller
 
     public function updateProduct(Request $request, $id)
     {
-
+        
         $request->validate([
             'name' => 'bail|required|string|max:50',
             'description' => 'bail|required|string',
@@ -102,12 +102,12 @@ class ProductAdminController extends Controller
 
         if ($request->hasFile('image')) {
 
-            if ($product->image && file_exists(public_path('uploads/' . $product->image))) {
-                unlink(public_path('uploads/' . $product->image));
+            if ($product->image && file_exists(public_path('uploads/product/' . $product->image))) {
+                unlink(public_path('uploads/product/' . $product->image));
             }
             $file = $request->file('image');
             $file_name = time() . '_' . $file->getClientOriginalName();
-            $filePath = public_path('uploads');
+            $filePath = public_path('uploads/product/');
             $file->move($filePath, $file_name);
 
 
