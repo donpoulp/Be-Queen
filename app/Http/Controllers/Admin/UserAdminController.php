@@ -67,4 +67,18 @@ class UserAdminController extends Controller
 
         return $this->userShow()->with('message', 'User modifié');
     }
+    public function searchUser(Request $request){
+        $search = $request->input('search');
+
+
+        $results = User::where('first_name', 'like', "%$search%")
+            ->orWhere('last_name', 'like', "%$search%")
+            ->orWhere('email', 'like', "%$search%")
+            ->orWhere('civility', 'like', "%$search%")
+            ->orWhere('adress', 'like', "%$search%")
+            ->orWhere('city', 'like', "%$search%")->get();
+
+        return $this->userShow()->with('results', $results);
+    }
+
 }

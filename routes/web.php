@@ -71,9 +71,20 @@ Route::prefix('Admin')->group(function () {
 
         Route::delete('/whell/delete/{id}', [CustomAdminController::class, 'deleteWheel'])->name('deleteWheel');
 //--------------------------------------------------------------------------------------------------------------------//
+//-----------------------------------------------------Pedales--------------------------------------------------------//
 
         Route::get('/pedal', [CustomAdminController::class, 'pedalCustom'])->name('pedalCustom');
+//*************************************************supprimer une pedale****************************************************
         Route::delete('/pedal/delete/{id}', [CustomAdminController::class, 'deletePedal'])->name('deletePedal');
+//*************************************************Creer une pedale*********************************************************
+        Route::get('/pedal/post', [CustomAdminController::class, 'pedalPost'])->name('pedalPost');
+        Route::get('/pedal/create', [CustomAdminController::class, 'newPedal'])->name('newPedal');
+        Route::post('/pedal/create', [CustomAdminController::class, 'newPedal']);
+
+//**********************************************modifier une pedale********************************************************
+        Route::get('/pedal/{id}', [CustomAdminController::class, 'pedalPut'])->name('pedalPut');;
+        Route::put('/pedal/update/{id}', [CustomAdminController::class, 'updatePedal'])->name('updatePedal');
+
 //--------------------------------------------------------------------------------------------------------------------//
 
         Route::get('/propulsion', [CustomAdminController::class, 'propulsion'])->name('propulsion');
@@ -123,7 +134,9 @@ Route::prefix('Admin')->group(function () {
     Route::post('/orders', [OrderAdminController::class, 'bladeCreateOrder'])->name('bladeCreateOrder');
 
     Route::get('/searchOrder', [OrderAdminController::class, 'searchOrders'])->name('searchOrders');    
-    
+
+
+
     // User
     Route::prefix('user')->group(function () {
         Route::get('/', [UserAdminController::class, 'userShow'])->name('userShow');
@@ -138,5 +151,6 @@ Route::prefix('Admin')->group(function () {
         Route::get('/Edit/{id}', [UserAdminController::class, 'userEdit'])->name('userEdit');
         Route::put('/put/{id}', [UserAdminController::class, 'userPut'])->name('userPut');
         //Route::get('/patch/{id}', [UserAdminController::class, 'userPatch']);
+        Route::get('/search', [UserAdminController::class, 'searchUser'])->name('searchUser');
     });
 });
