@@ -8,14 +8,12 @@ use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Admin\DasboardController;
-use App\Http\Controllers\Admin\UserAdminController;
-use App\Http\Controllers\Admin\OrderAdminController;
+
+
+
+
 use App\Http\Controllers\Admin\CustomAdminController;
-use App\Http\Controllers\Admin\ProductAdminController;
-use App\Http\Controllers\Admin\CategoryAdminController;
+
 
 
 
@@ -55,7 +53,7 @@ Route::prefix('Admin')->group(function () {
     Route::get('/search', [CategoryAdminController::class, 'searchCategory'])->name('searchCategory');
 
 // Orders //
-    Route::get('/orders', [OrderAdminController::class, 'bladeOrders'])->name('bladeOrders');
+    Route::get('/orders', [OrderAdminController::class, 'bladeOrde});rs'])->name('bladeOrders');
 
     Route::get('/orders/{id}', [OrderAdminController::class, 'bladeUpdateOrder'])->name('bladeUpdateOrder');
     Route::post('/orders/{id}', [OrderAdminController::class, 'bladeUpdateOrder'])->name('bladeUpdateOrder');
@@ -71,7 +69,7 @@ Route::prefix('Admin')->group(function () {
         Route::get('/', [UserAdminController::class, 'userShow'])->name('userShow');
 
         Route::get('/delete/{id}', [UserAdminController::class, 'userDelete'])->name('userDelete');
-        //Route::post('/post', [UserAdminController::class, 'userPost'])->name('userPost');
+        //Route::post('/post', [UserAdminController::class, 'userP});ost'])->name('userPost');
 
         Route::get('/post', [UserAdminController::class, 'userPost'])->name('userPost');
         Route::post('/create', [UserAdminController::class, 'userCreate'])->name('userCreate');
