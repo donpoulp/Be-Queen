@@ -22,6 +22,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 // recuperer les infos de l'utilisateur actuellement connecter en verifiant sont token
 Route::get('/me', [AuthController::class, 'actualUser'])->middleware('auth:sanctum');
 
+
 // AUTH ADMIN
 // crée un admin puis generer un token
 Route::post('/adminRegister', [AuthController::class, 'adminRegister'])->middleware('auth:sanctum', AdminUser::class);
@@ -49,8 +50,10 @@ Route::prefix('User')->controller(UserController::class)->group(function () {
     // supprimer un user
     Route::delete('delete/{id}', 'deleteUser')->middleware('auth:sanctum', AdminUser::class);
 
+
     // recupère un user avec ses toutes ces commandes
     Route::get('/{id}/Orders/', 'getOrdersByUserId')->middleware('auth:sanctum', AdminUser::class);
+
 });//*******************************************************************************************************************
 
 // produits
@@ -84,10 +87,12 @@ Route::get('/getOrders/{id}',[OrderController::class, 'getUser'])->middleware('a
 Route::get('/getProducts/{id}',[OrderController::class, 'getProducts'])->middleware('auth:sanctum', AdminUser::class);
 Route::get('/getCustomProducts/{id}',[OrderController::class, 'getCustomProducts'])->middleware('auth:sanctum', AdminUser::class);
 
-// custom
-Route::get('customproducts', [CustomProductController::class, 'showCustomProducts'])->middleware('auth:sanctum');
-Route::get('customproduct/{id}', [CustomProductController::class, 'showCustomProduct'])->middleware('auth:sanctum');
-Route::post('customproduct', [CustomProductController::class, 'createCustomProduct'])->middleware('auth:sanctum');
-Route::put('customproduct/{id}', [CustomProductController::class, 'updateCustomProduct'])->middleware('auth:sanctum');
-Route::patch('customproduct/{id}', [CustomProductController::class, 'updateColumnCustomProduct'])->middleware('auth:sanctum');
-Route::delete('customproduct/{id}', [CustomProductController::class, 'deleteCustomProduct'])->middleware('auth:sanctum', AdminUser::class);
+
+// CUSTOME PRODUCT
+Route::get('customproducts', [CustomProductController::class, 'ShowCustomProducts']);
+Route::get('customproduct/{id}', [CustomProductController::class, 'ShowCustomProduct']);
+Route::post('customproduct', [CustomProductController::class, 'CreateCustomProducts']);
+Route::put('customproduct/{id}', [CustomProductController::class, 'ModifCustomProducts']);
+Route::patch('customproduct/{id}', [CustomProductController::class, 'ModifColumnCustomProduct']);
+Route::delete('customproduct/{id}', [CustomProductController::class, 'DeleteCustomProduct']);
+

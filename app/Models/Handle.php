@@ -12,6 +12,13 @@ class Handle extends Model
 {
     use HasFactory;
 
+    protected $table = 'handles';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
+
+    protected $fillable = ["name", "color","material", "price", "image"];
+
+
     protected static function newFactory(): Factory
     {
         return PostHandleFactory::new();

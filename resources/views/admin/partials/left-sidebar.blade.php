@@ -45,7 +45,6 @@
             <span>Produits</span></a>
     </li>
     <hr class="sidebar-divider">
-
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('bladeCategories') }}" id="userDropdown" role="button" aria-haspopup="true"
             aria-expanded="false">

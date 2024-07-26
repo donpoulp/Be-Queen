@@ -46,7 +46,7 @@
                                 <td>{{ $result->description }}</td>
                                 <td>{{ $result->price }}€</td>
                                 <td>
-                                    <img src="{{ URL::asset('uploads/' . $result->image) }}" alt="{{ $result->image}}" class="img-fluid" width="100">
+                                    <img src="{{ URL::asset('uploads/product' . $result->image) }}" alt="{{ $result->image}}" class="img-fluid" width="100">
                                 </td>
                                 <td>
                                     <small>ID : {{ $result->category->id }}</small><br>
@@ -81,7 +81,7 @@
                         <td>{{ $product->description }}</td>
                         <td>{{ $product->price }}€</td>
                         <td>
-                            <img src="{{ asset('uploads/' . $product->image) }}" alt="{{ $product->name }}"
+                            <img src="{{ asset('uploads/product/' . $product->image) }}" alt="{{ $product->name }}"
                                 class="img-fluid" width="100">
                         </td>
                         <td>
