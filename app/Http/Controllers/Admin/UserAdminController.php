@@ -22,7 +22,7 @@ class UserAdminController extends Controller
         return $this->userShow()->with('message', 'User supprimé');
     }
     public function userPost(Request $request){
-//
+
     return view ('admin.userPost');
     }
     public function userCreate(Request $request){

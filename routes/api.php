@@ -3,7 +3,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 // order
 use App\Http\Controllers\OrderController;
-// categoriy
+// category
 use App\Http\Controllers\CategoryController;
 // custom
 use App\Http\Controllers\CustomProductController;
@@ -18,7 +18,7 @@ use App\Http\Middleware\AdminUser;
 Route::post('/register', [AuthController::class, 'register']);
 // veirfier que l'user exist et generer un token
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 // recuperer les infos de l'utilisateur actuellement connecter en verifiant sont token
 Route::get('/me', [AuthController::class, 'actualUser'])->middleware('auth:sanctum');
 
